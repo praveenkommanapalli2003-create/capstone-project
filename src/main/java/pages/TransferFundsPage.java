@@ -20,48 +20,57 @@ public class TransferFundsPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
-    By amountField = By.id("amount"); // ⚠️ verify this in UI
+    // safer locators (ParaBank usually uses name attributes)
+    By transferLink = By.linkText("Transfer Funds");
+
+    By amountField = By.name("amount");   // FIXED (was id -> unstable)
     By fromAccount = By.id("fromAccountId");
     By toAccount = By.id("toAccountId");
     By transferBtn = By.xpath("//input[@value='Transfer']");
 
     public void transferFunds(String amount) {
 
-        // Wait for page ready
+        // STEP 1: Ensure page is fully loaded
         wait.until(webDriver ->
                 ((JavascriptExecutor) webDriver)
                         .executeScript("return document.readyState")
                         .equals("complete")
         );
 
-        // 🔥 FIX 1: wait for VISIBILITY instead of presence
+        // STEP 2: Navigate to Transfer Funds page safely
+        wait.until(ExpectedConditions.elementToBeClickable(transferLink)).click();
+
+        // STEP 3: Wait for correct page
+        wait.until(ExpectedConditions.visibilityOfElementLocated(amountField));
+
+        System.out.println("Current URL: " + driver.getCurrentUrl());
+
+        // STEP 4: Enter amount
         WebElement amountElement = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(amountField)
         );
-
         amountElement.clear();
         amountElement.sendKeys(amount);
 
-        // FROM account
+        // STEP 5: FROM account
         WebElement fromElement = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(fromAccount)
         );
-        Select from = new Select(fromElement);
-        from.selectByIndex(0);
+        new Select(fromElement).selectByIndex(0);
 
-        // TO account
+        // STEP 6: TO account
         WebElement toElement = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(toAccount)
         );
-        Select to = new Select(toElement);
 
-        if (to.getOptions().size() > 1) {
-            to.selectByIndex(1);
+        Select toSelect = new Select(toElement);
+        if (toSelect.getOptions().size() > 1) {
+            toSelect.selectByIndex(1);
         } else {
-            to.selectByIndex(0);
+            toSelect.selectByIndex(0);
         }
 
-        // FIX 2: safe click
+        // STEP 7: Click transfer
         wait.until(ExpectedConditions.elementToBeClickable(transferBtn)).click();
     }
 }
