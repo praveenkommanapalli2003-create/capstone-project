@@ -13,44 +13,47 @@ import java.time.Duration;
 public class TransferFundsPage {
 
     WebDriver driver;
+    WebDriverWait wait;
 
     public TransferFundsPage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
-    By amountField = By.id("amount");
+    By amountField = By.id("amount"); // ⚠️ verify this in UI
     By fromAccount = By.id("fromAccountId");
     By toAccount = By.id("toAccountId");
     By transferBtn = By.xpath("//input[@value='Transfer']");
 
     public void transferFunds(String amount) {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-
-        // Wait for page load complete
+        // Wait for page ready
         wait.until(webDriver ->
                 ((JavascriptExecutor) webDriver)
                         .executeScript("return document.readyState")
                         .equals("complete")
         );
 
-        // Wait for amount field and enter value
+        // 🔥 FIX 1: wait for VISIBILITY instead of presence
         WebElement amountElement = wait.until(
-                ExpectedConditions.presenceOfElementLocated(amountField)
+                ExpectedConditions.visibilityOfElementLocated(amountField)
         );
+
         amountElement.clear();
         amountElement.sendKeys(amount);
 
-        // Select FROM account
-        Select from = new Select(wait.until(
+        // FROM account
+        WebElement fromElement = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(fromAccount)
-        ));
+        );
+        Select from = new Select(fromElement);
         from.selectByIndex(0);
 
-        // Select TO account
-        Select to = new Select(wait.until(
+        // TO account
+        WebElement toElement = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(toAccount)
-        ));
+        );
+        Select to = new Select(toElement);
 
         if (to.getOptions().size() > 1) {
             to.selectByIndex(1);
@@ -58,7 +61,7 @@ public class TransferFundsPage {
             to.selectByIndex(0);
         }
 
-        // Click Transfer button
+        // FIX 2: safe click
         wait.until(ExpectedConditions.elementToBeClickable(transferBtn)).click();
     }
 }
