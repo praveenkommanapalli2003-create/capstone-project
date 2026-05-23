@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,30 +25,32 @@ public class TransferFundsPage {
 
     public void transferFunds(String amount) {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
-        // Wait for amount field (THIS FIXES YOUR ERROR)
-        WebElement amountBox = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(amountField)
+        // Wait for page load complete
+        wait.until(webDriver ->
+                ((JavascriptExecutor) webDriver)
+                        .executeScript("return document.readyState")
+                        .equals("complete")
         );
 
-        amountBox.clear();
-        amountBox.sendKeys(amount);
+        // Wait for amount field and enter value
+        WebElement amountElement = wait.until(
+                ExpectedConditions.presenceOfElementLocated(amountField)
+        );
+        amountElement.clear();
+        amountElement.sendKeys(amount);
 
-        // Wait for FROM dropdown
-        WebElement fromDrop = wait.until(
+        // Select FROM account
+        Select from = new Select(wait.until(
                 ExpectedConditions.visibilityOfElementLocated(fromAccount)
-        );
-
-        Select from = new Select(fromDrop);
+        ));
         from.selectByIndex(0);
 
-        // Wait for TO dropdown
-        WebElement toDrop = wait.until(
+        // Select TO account
+        Select to = new Select(wait.until(
                 ExpectedConditions.visibilityOfElementLocated(toAccount)
-        );
-
-        Select to = new Select(toDrop);
+        ));
 
         if (to.getOptions().size() > 1) {
             to.selectByIndex(1);
@@ -55,11 +58,7 @@ public class TransferFundsPage {
             to.selectByIndex(0);
         }
 
-        // Wait and click transfer button
-        WebElement transfer = wait.until(
-                ExpectedConditions.elementToBeClickable(transferBtn)
-        );
-
-        transfer.click();
+        // Click Transfer button
+        wait.until(ExpectedConditions.elementToBeClickable(transferBtn)).click();
     }
 }
