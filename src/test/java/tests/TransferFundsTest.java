@@ -11,35 +11,30 @@ import pages.TransferFundsPage;
 public class TransferFundsTest {
 
     LoginPage login;
-
     TransferFundsPage transfer;
 
     @BeforeTest
-
     public void setup() {
 
         DriverSetup.setupBrowser();
 
-        login =
-        new LoginPage(DriverSetup.driver);
+        login = new LoginPage(DriverSetup.driver);
+        transfer = new TransferFundsPage(DriverSetup.driver);
 
-        transfer =
-        new TransferFundsPage(DriverSetup.driver);
+        // MUST login first
+        login.loginApplication("john", "demo");
     }
 
     @Test
+    public void transferTest() throws Exception {
 
-    public void transferTest() {
+        Thread.sleep(2000); // allow accounts to load
 
-        login.loginApplication("john", "demo");
-
-        transfer.transferMoney();
+        transfer.transferFunds("10"); // small valid amount
     }
 
     @AfterTest
-
-    public void closeBrowser() {
-
+    public void tearDown() {
         DriverSetup.driver.quit();
     }
 }

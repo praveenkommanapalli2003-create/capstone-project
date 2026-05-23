@@ -4,58 +4,28 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-
 import base.DriverSetup;
-
 import pages.LoginPage;
-
-import utils.ExtentManager;
-import utils.ScreenshotUtil;
 
 public class LoginTest {
 
     LoginPage login;
 
-    ExtentReports extent;
-
-    ExtentTest test;
-
     @BeforeTest
-
     public void setup() {
 
         DriverSetup.setupBrowser();
-
-        login =
-        new LoginPage(DriverSetup.driver);
-
-        extent =
-        ExtentManager.getReport();
-
-        test =
-        extent.createTest("Login Test");
+        login = new LoginPage(DriverSetup.driver);
     }
 
     @Test
+    public void loginTest() {
 
-    public void loginTest() throws Exception {
-
-        login.loginApplication
-        ("praveen123", "admin123");
-
-        test.pass("Login Successful");
-
-        ScreenshotUtil.captureScreenshot
-        (DriverSetup.driver, "LoginSuccess");
+        login.loginApplication("john", "demo");
     }
 
     @AfterTest
-
-    public void closeBrowser() {
-
-        extent.flush();
+    public void tearDown() {
 
         DriverSetup.driver.quit();
     }
