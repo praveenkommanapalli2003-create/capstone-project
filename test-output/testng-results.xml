@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="6" passed="6" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-05-23T13:47:41 IST" name="ParaBankSuite" finished-at="2026-05-23T13:49:19 IST" duration-ms="98540">
+    <groups>
+    </groups>
+    <test started-at="2026-05-23T13:47:41 IST" name="ParaBankTests" finished-at="2026-05-23T13:49:19 IST" duration-ms="98540">
+      <class name="tests.LoginTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.LoginTest@36ebc363]" started-at="2026-05-23T13:47:50 IST" name="setup" finished-at="2026-05-23T13:48:01 IST" duration-ms="11367" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="loginTest()[pri:0, instance:tests.LoginTest@36ebc363]" started-at="2026-05-23T13:48:51 IST" name="loginTest" finished-at="2026-05-23T13:48:53 IST" duration-ms="1666" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginTest -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:tests.LoginTest@36ebc363]" started-at="2026-05-23T13:49:18 IST" name="closeBrowser" finished-at="2026-05-23T13:49:19 IST" duration-ms="1257" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- tests.LoginTest -->
+      <class name="tests.UpdateContactTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.UpdateContactTest@40a4337a]" started-at="2026-05-23T13:48:38 IST" name="setup" finished-at="2026-05-23T13:48:51 IST" duration-ms="12356" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="updateTest()[pri:0, instance:tests.UpdateContactTest@40a4337a]" started-at="2026-05-23T13:49:04 IST" name="updateTest" finished-at="2026-05-23T13:49:07 IST" duration-ms="3754" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- updateTest -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:tests.UpdateContactTest@40a4337a]" started-at="2026-05-23T13:49:19 IST" name="closeBrowser" finished-at="2026-05-23T13:49:19 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- tests.UpdateContactTest -->
+      <class name="tests.TransferFundsTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.TransferFundsTest@702657cc]" started-at="2026-05-23T13:48:25 IST" name="setup" finished-at="2026-05-23T13:48:38 IST" duration-ms="13422" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="transferTest()[pri:0, instance:tests.TransferFundsTest@702657cc]" started-at="2026-05-23T13:48:55 IST" name="transferTest" finished-at="2026-05-23T13:48:59 IST" duration-ms="3609" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- transferTest -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:tests.TransferFundsTest@702657cc]" started-at="2026-05-23T13:49:19 IST" name="closeBrowser" finished-at="2026-05-23T13:49:19 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- tests.TransferFundsTest -->
+      <class name="tests.RegistrationTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.RegistrationTest@43bc63a3]" started-at="2026-05-23T13:48:10 IST" name="setup" finished-at="2026-05-23T13:48:25 IST" duration-ms="15094" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="registrationTest()[pri:0, instance:tests.RegistrationTest@43bc63a3]" started-at="2026-05-23T13:48:53 IST" name="registrationTest" finished-at="2026-05-23T13:48:55 IST" duration-ms="2543" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- registrationTest -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:tests.RegistrationTest@43bc63a3]" started-at="2026-05-23T13:49:19 IST" name="closeBrowser" finished-at="2026-05-23T13:49:19 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- tests.RegistrationTest -->
+      <class name="tests.LogoutTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.LogoutTest@6025e1b6]" started-at="2026-05-23T13:48:01 IST" name="setup" finished-at="2026-05-23T13:48:10 IST" duration-ms="9047" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="logoutTest()[pri:0, instance:tests.LogoutTest@6025e1b6]" started-at="2026-05-23T13:49:07 IST" name="logoutTest" finished-at="2026-05-23T13:49:17 IST" duration-ms="9364" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logoutTest -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:tests.LogoutTest@6025e1b6]" started-at="2026-05-23T13:49:19 IST" name="closeBrowser" finished-at="2026-05-23T13:49:19 IST" duration-ms="7" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- tests.LogoutTest -->
+      <class name="tests.BillPayTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:tests.BillPayTest@6a6cb05c]" started-at="2026-05-23T13:47:41 IST" name="setup" finished-at="2026-05-23T13:47:50 IST" duration-ms="8926" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="billPayTest()[pri:0, instance:tests.BillPayTest@6a6cb05c]" started-at="2026-05-23T13:48:59 IST" name="billPayTest" finished-at="2026-05-23T13:49:04 IST" duration-ms="4984" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- billPayTest -->
+        <test-method is-config="true" signature="closeBrowser()[pri:0, instance:tests.BillPayTest@6a6cb05c]" started-at="2026-05-23T13:49:17 IST" name="closeBrowser" finished-at="2026-05-23T13:49:18 IST" duration-ms="991" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- closeBrowser -->
+      </class> <!-- tests.BillPayTest -->
+    </test> <!-- ParaBankTests -->
+  </suite> <!-- ParaBankSuite -->
+</testng-results>

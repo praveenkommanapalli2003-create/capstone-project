@@ -1,0 +1,25 @@
+
+
+<suite name="ParaBankSuite">
+
+    <test name="ParaBankTests">
+
+        <classes>
+
+            <class name="tests.LoginTest"/>
+
+            <class name="tests.RegistrationTest"/>
+
+            <class name="tests.TransferFundsTest"/>
+
+            <class name="tests.BillPayTest"/>
+
+            <class name="tests.UpdateContactTest"/>
+
+            <class name="tests.LogoutTest"/>
+
+        </classes>
+
+    </test>
+
+</suite>
