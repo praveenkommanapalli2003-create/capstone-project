@@ -1,14 +1,9 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.*;
 import java.time.Duration;
+import java.util.List;
 
 public class TransferFundsPage {
 
@@ -17,60 +12,78 @@ public class TransferFundsPage {
 
     public TransferFundsPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(40));
     }
 
-    // safer locators (ParaBank usually uses name attributes)
     By transferLink = By.linkText("Transfer Funds");
-
-    By amountField = By.name("amount");   // FIXED (was id -> unstable)
-    By fromAccount = By.id("fromAccountId");
-    By toAccount = By.id("toAccountId");
-    By transferBtn = By.xpath("//input[@value='Transfer']");
+    By amountField  = By.name("amount");
+    By fromAccount  = By.id("fromAccountId");
+    By toAccount    = By.id("toAccountId");
+    By transferBtn  = By.xpath("//input[@value='Transfer']");
 
     public void transferFunds(String amount) {
 
-        // STEP 1: Ensure page is fully loaded
-        wait.until(webDriver ->
-                ((JavascriptExecutor) webDriver)
-                        .executeScript("return document.readyState")
-                        .equals("complete")
+        // STEP 1: Wait for page ready
+        wait.until(d ->
+            ((JavascriptExecutor) d)
+                .executeScript("return document.readyState")
+                .equals("complete")
         );
 
-        // STEP 2: Navigate to Transfer Funds page safely
+        // STEP 2: Click Transfer Funds link
         wait.until(ExpectedConditions.elementToBeClickable(transferLink)).click();
 
-        // STEP 3: Wait for correct page
-        wait.until(ExpectedConditions.visibilityOfElementLocated(amountField));
+        // STEP 3: Wait for URL to confirm navigation
+        wait.until(ExpectedConditions.urlContains("transfer"));
+        System.out.println("Navigated to: " + driver.getCurrentUrl());
 
-        System.out.println("Current URL: " + driver.getCurrentUrl());
+        // STEP 4: Wait for FROM dropdown to be populated via AJAX
+        wait.until(d -> {
+            try {
+                Select from = new Select(d.findElement(fromAccount));
+                return from.getOptions().size() > 1;
+            } catch (Exception e) {
+                return false;
+            }
+        });
+        System.out.println("FROM dropdown loaded");
 
-        // STEP 4: Enter amount
+        // STEP 5: Wait for TO dropdown to be populated via AJAX
+        wait.until(d -> {
+            try {
+                Select to = new Select(d.findElement(toAccount));
+                return to.getOptions().size() > 1;
+            } catch (Exception e) {
+                return false;
+            }
+        });
+        System.out.println("TO dropdown loaded");
+
+        // STEP 6: Wait for amount field (page fully ready now)
         WebElement amountElement = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(amountField)
+            ExpectedConditions.visibilityOfElementLocated(amountField)
         );
         amountElement.clear();
         amountElement.sendKeys(amount);
+        System.out.println("Amount entered: " + amount);
 
-        // STEP 5: FROM account
-        WebElement fromElement = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(fromAccount)
-        );
-        new Select(fromElement).selectByIndex(0);
+        // STEP 7: Select FROM account
+        Select from = new Select(driver.findElement(fromAccount));
+        from.selectByIndex(0);
+        System.out.println("FROM account selected");
 
-        // STEP 6: TO account
-        WebElement toElement = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(toAccount)
-        );
-
-        Select toSelect = new Select(toElement);
-        if (toSelect.getOptions().size() > 1) {
-            toSelect.selectByIndex(1);
+        // STEP 8: Select TO account (different from FROM)
+        Select to = new Select(driver.findElement(toAccount));
+        List<WebElement> toOptions = to.getOptions();
+        if (toOptions.size() > 1) {
+            to.selectByIndex(1);
         } else {
-            toSelect.selectByIndex(0);
+            to.selectByIndex(0);
         }
+        System.out.println("TO account selected");
 
-        // STEP 7: Click transfer
+        // STEP 9: Click Transfer button
         wait.until(ExpectedConditions.elementToBeClickable(transferBtn)).click();
+        System.out.println("Transfer submitted successfully");
     }
 }
