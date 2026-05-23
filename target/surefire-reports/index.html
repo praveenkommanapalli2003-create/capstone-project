@@ -163,15 +163,21 @@
                   <a name="transferTest">
                   </a> <!-- transferTest -->
                   <span class="method-name">transferTest</span>
-                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;css selector&quot;,&quot;selector&quot;:&quot;#amount&quot;}
+                  <div class="stack-trace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.name: amount (tried for 40 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+	at pages.TransferFundsPage.transferFunds(TransferFundsPage.java:62)
+	at tests.TransferFundsTest.transferTest(TransferFundsTest.java:26)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {&quot;method&quot;:&quot;css selector&quot;,&quot;selector&quot;:&quot;*[name=&apos;amount&apos;]&quot;}
   (Session info: chrome=148.0.7778.179)
 For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
 Build info: version: &apos;4.21.0&apos;, revision: &apos;79ed462ef4&apos;
 System info: os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;17.0.12&apos;
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [646feebfa4fb306e8bebf149fde444e9, findElement {value=amount, using=id}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 148.0.7778.179, chrome: {chromedriverVersion: 148.0.7778.178 (d096af1c9e9..., userDataDir: C:\Users\gopi\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:58556}, goog:processID: 17244, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:58556/devtoo..., se:cdpVersion: 148.0.7778.179, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 646feebfa4fb306e8bebf149fde444e9
+Command: [d708cc3d6bf48c574723b99c7f439b4d, findElement {value=amount, using=name}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 148.0.7778.179, chrome: {chromedriverVersion: 148.0.7778.178 (d096af1c9e9..., userDataDir: C:\Users\gopi\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60166}, goog:processID: 15368, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60166/devtoo..., se:cdpVersion: 148.0.7778.179, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: d708cc3d6bf48c574723b99c7f439b4d
 	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
@@ -180,12 +186,13 @@ Session ID: 646feebfa4fb306e8bebf149fde444e9
 	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
 	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:66)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
 	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:355)
 	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:349)
-	at pages.TransferFundsPage.transferFunds(TransferFundsPage.java:23)
-	at tests.TransferFundsTest.transferTest(TransferFundsTest.java:33)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:171)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:168)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+	... 35 more
 ... Removed 37 stack frames
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
@@ -326,34 +333,34 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(6);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'logoutTest')
-data.setCell(0, 2, 'tests.LogoutTest')
-data.setCell(0, 3, 12937);
+data.setCell(0, 1, 'transferTest')
+data.setCell(0, 2, 'tests.TransferFundsTest')
+data.setCell(0, 3, 47319);
 data.setCell(1, 0, 1)
 data.setCell(1, 1, 'updateContactTest')
 data.setCell(1, 2, 'tests.UpdateContactTest')
-data.setCell(1, 3, 12295);
+data.setCell(1, 3, 11119);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'transferTest')
-data.setCell(2, 2, 'tests.TransferFundsTest')
-data.setCell(2, 3, 12042);
+data.setCell(2, 1, 'billPayTest')
+data.setCell(2, 2, 'tests.BillPayTest')
+data.setCell(2, 3, 3738);
 data.setCell(3, 0, 3)
 data.setCell(3, 1, 'registrationTest')
 data.setCell(3, 2, 'tests.RegistrationTest')
-data.setCell(3, 3, 10967);
+data.setCell(3, 3, 3080);
 data.setCell(4, 0, 4)
-data.setCell(4, 1, 'billPayTest')
-data.setCell(4, 2, 'tests.BillPayTest')
-data.setCell(4, 3, 10931);
+data.setCell(4, 1, 'logoutTest')
+data.setCell(4, 2, 'tests.LogoutTest')
+data.setCell(4, 3, 2940);
 data.setCell(5, 0, 5)
 data.setCell(5, 1, 'loginTest')
 data.setCell(5, 2, 'tests.LoginTest')
-data.setCell(5, 3, 590);
+data.setCell(5, 3, 1759);
 window.suiteTableData['Surefire_suite']= { tableData: data, tableDiv: 'times-div-Surefire_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 59 seconds</span>
+              <span class="suite-total-time">Total running time: 1 minutes</span>
               <div id="times-div-Surefire_suite">
               </div> <!-- times-div-Surefire_suite -->
             </div> <!-- times-div -->
@@ -389,56 +396,56 @@ return data;
               <div class="chronological-class-name">tests.LoginTest</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">setup</span>
-                <span class="method-start">15906 ms</span>
+                <span class="method-start">10757 ms</span>
               </div> <!-- configuration-test before -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">tests.LogoutTest</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">setup</span>
-                <span class="method-start">31725 ms</span>
+                <span class="method-start">16831 ms</span>
               </div> <!-- configuration-test before -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">tests.RegistrationTest</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">setup</span>
-                <span class="method-start">44841 ms</span>
+                <span class="method-start">29610 ms</span>
               </div> <!-- configuration-test before -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">tests.TransferFundsTest</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">setup</span>
-                <span class="method-start">58743 ms</span>
+                <span class="method-start">38230 ms</span>
               </div> <!-- configuration-test before -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">tests.BillPayTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">billPayTest</span>
-                <span class="method-start">84053 ms</span>
+                <span class="method-start">50632 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">tests.LoginTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">loginTest</span>
-                <span class="method-start">94994 ms</span>
+                <span class="method-start">54388 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">tests.LogoutTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">logoutTest</span>
-                <span class="method-start">95588 ms</span>
+                <span class="method-start">56150 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">tests.RegistrationTest</div> <!-- chronological-class-name -->
               <div class="test-method">
                 <span class="method-name">registrationTest</span>
-                <span class="method-start">108538 ms</span>
+                <span class="method-start">59091 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
@@ -447,57 +454,57 @@ return data;
                 <img src="failed.png">
                 </img>
                 <span class="method-name">transferTest</span>
-                <span class="method-start">119508 ms</span>
+                <span class="method-start">62204 ms</span>
               </div> <!-- test-method -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">tests.UpdateContactTest</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <span class="method-name">setup</span>
-                <span class="method-start">131564 ms</span>
+                <span class="method-start">109537 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
                 <span class="method-name">updateContactTest</span>
-                <span class="method-start">151740 ms</span>
+                <span class="method-start">139762 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">164038 ms</span>
+                <span class="method-start">150881 ms</span>
               </div> <!-- configuration-class after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">tests.BillPayTest</div> <!-- chronological-class-name -->
               <div class="configuration-test after">
                 <span class="method-name">closeBrowser</span>
-                <span class="method-start">164578 ms</span>
+                <span class="method-start">156266 ms</span>
               </div> <!-- configuration-test after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">tests.LoginTest</div> <!-- chronological-class-name -->
               <div class="configuration-test after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">164579 ms</span>
+                <span class="method-start">156267 ms</span>
               </div> <!-- configuration-test after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">tests.LogoutTest</div> <!-- chronological-class-name -->
               <div class="configuration-test after">
                 <span class="method-name">closeBrowser</span>
-                <span class="method-start">164580 ms</span>
+                <span class="method-start">156267 ms</span>
               </div> <!-- configuration-test after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">tests.RegistrationTest</div> <!-- chronological-class-name -->
               <div class="configuration-test after">
                 <span class="method-name">closeBrowser</span>
-                <span class="method-start">164580 ms</span>
+                <span class="method-start">156268 ms</span>
               </div> <!-- configuration-test after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">tests.TransferFundsTest</div> <!-- chronological-class-name -->
               <div class="configuration-test after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">164580 ms</span>
+                <span class="method-start">156270 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
